@@ -9,7 +9,6 @@ pipeline {
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
       GIT_USERNAME      = "$GIT_CREDS_USR"
       GIT_API_TOKEN     = "$GIT_CREDS_PSW"
-      BRANCH_NAME       = "$BRANCH_NAME"
       JOB_NAME          = "$JOB_NAME"
       BUILD_URL         = "$BUILD_URL"
       BUILD_LOG_URL     = "$BUILD_LOG_URL"
@@ -24,6 +23,7 @@ pipeline {
           PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
           PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
           HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
+          BRANCH_NAME       = "$BRANCH_NAME"
         }
         steps {
           container('maven') {
